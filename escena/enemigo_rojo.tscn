@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bt1ql4m7sysl3"]
+
+[ext_resource type="Script" uid="uid://dxjrlb2a8tx6c" path="res://scripts/enemigo_rojo.gd" id="1_3n7ov"]
+[ext_resource type="Texture2D" path="res://sprite/Sprite-0009.png" id="2_lo5e0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lsh5x"]
+size = Vector2(10, 10)
+
+[node name="enemigo_rojo" type="CharacterBody2D" unique_id=372959547]
+script = ExtResource("1_3n7ov")
+metadata/_custom_type_script = "uid://bwivwt018vm77"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1714328349]
+shape = SubResource("RectangleShape2D_lsh5x")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1708605881]
+texture = ExtResource("2_lo5e0")
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=284529224]
+position = Vector2(8, 0)
+target_position = Vector2(0, 9)
+
+[connection signal="cambiodireccion" from="." to="." method="_on_cambiodireccion"]

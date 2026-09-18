@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://gf8afxcf4jab"]
+
+[ext_resource type="Script" uid="uid://d2a5i71dqhs3w" path="res://scripts/enganche.gd" id="1_4xils"]
+[ext_resource type="Texture2D" uid="uid://b43w6kti4cu3l" path="res://sprite/Sprite-0001.png" id="1_op58o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4xils"]
+radius = 3.0
+
+[node name="enganche" type="StaticBody2D" unique_id=641136109]
+script = ExtResource("1_4xils")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1995966610]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_op58o")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=107814056]
+
+[node name="Area2D2" type="Area2D" parent="." unique_id=1274967678 groups=["enganche"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2" unique_id=830942405]
+shape = SubResource("CircleShape2D_4xils")
+
+[connection signal="gancho" from="." to="." method="_on_gancho"]
+[connection signal="area_entered" from="Area2D2" to="." method="_on_area_2d_2_area_entered"]

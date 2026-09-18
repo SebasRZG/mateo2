@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://3f71rpbqb2bf"]
+
+[ext_resource type="Texture2D" uid="uid://52k1nkwk7tpf" path="res://sprite/Sprite-4.png" id="1_0t432"]
+[ext_resource type="Script" uid="uid://bro18t64dr368" path="res://scripts/cuerda.gd" id="1_hqum8"]
+[ext_resource type="Script" uid="uid://cb3eu6h8orvrn" path="res://scripts/areacuerda.gd" id="3_2fx52"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqum8"]
+size = Vector2(2, 4)
+
+[node name="cuerda" type="CharacterBody2D" unique_id=352813869]
+script = ExtResource("1_hqum8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=789130831]
+position = Vector2(6, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("1_0t432")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=635313036 groups=["cuerda"]]
+position = Vector2(4, 1)
+script = ExtResource("3_2fx52")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=856695199]
+position = Vector2(7, -1)
+shape = SubResource("RectangleShape2D_hqum8")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=561536606]
+position = Vector2(11, 0)
+
+[node name="Marker2D2" type="Marker2D" parent="." unique_id=1449956405]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="gancho" from="Area2D" to="." method="_on_area_2d_gancho"]

@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://chgm5wcgrucw5"]
+
+[ext_resource type="Script" uid="uid://bwivwt018vm77" path="res://scripts/enemigo_verde.gd" id="1_rk0y5"]
+[ext_resource type="Texture2D" path="res://sprite/Sprite-0008.png" id="2_g2i77"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sr7jt"]
+size = Vector2(10, 9)
+
+[node name="enemigo_verde" type="CharacterBody2D" unique_id=160762711]
+script = ExtResource("1_rk0y5")
+metadata/_custom_type_script = "uid://d2653ve3vron2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1228545099]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_sr7jt")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1876226621]
+texture = ExtResource("2_g2i77")

@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dkh0omomxm6of"]
+
+[ext_resource type="Texture2D" path="res://sprite/Sprite-0006.png" id="1_71vkb"]
+[ext_resource type="Script" uid="uid://doca0kx5ow4na" path="res://scripts/largocuerda.gd" id="1_ujsdi"]
+
+[node name="largocuerda" type="CharacterBody2D" unique_id=1270057061]
+script = ExtResource("1_ujsdi")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=180657100]
+position = Vector2(-4, 0)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_71vkb")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1735039896]
+position = Vector2(-7, 0)
