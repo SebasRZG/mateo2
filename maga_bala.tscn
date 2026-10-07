@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://btmisg8cxwrjj"]
+
+[ext_resource type="Script" uid="uid://bfc1w2mbceohe" path="res://scripts/maga_bala.gd" id="1_dvx25"]
+[ext_resource type="Texture2D" uid="uid://ca8w21oukyb11" path="res://sprites/Enemigo_dos_Bullet-Sheet.png" id="2_g6euq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nrq53"]
+atlas = ExtResource("2_g6euq")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqc52"]
+atlas = ExtResource("2_g6euq")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n0rpp"]
+atlas = ExtResource("2_g6euq")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6y8u"]
+atlas = ExtResource("2_g6euq")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dvx25"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nrq53")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqc52")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n0rpp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h6y8u")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3dlag"]
+size = Vector2(10, 9)
+
+[node name="maga_bala" type="CharacterBody2D" unique_id=271445416 groups=["enemy"]]
+script = ExtResource("1_dvx25")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=545698957]
+sprite_frames = SubResource("SpriteFrames_dvx25")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1283203897]
+position = Vector2(-2, 0.5)
+shape = SubResource("RectangleShape2D_3dlag")
+
+[connection signal="golpear" from="." to="." method="_on_golpear"]

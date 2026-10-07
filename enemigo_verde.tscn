@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://chgm5wcgrucw5"]
+
+[ext_resource type="Script" uid="uid://bwivwt018vm77" path="res://scripts/enemigo_verde.gd" id="1_rk0y5"]
+[ext_resource type="Texture2D" uid="uid://cjbtsa63s7t3f" path="res://sprites/Enemigo_Run-Sheet.png" id="2_g2i77"]
+[ext_resource type="Texture2D" uid="uid://cr5jho1dex4uq" path="res://sprites/Enemigo_uno_Attack-Sheet.png" id="3_sr7jt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sr7jt"]
+size = Vector2(8, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j3leu"]
+atlas = ExtResource("3_sr7jt")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qwbca"]
+atlas = ExtResource("3_sr7jt")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_usavk"]
+atlas = ExtResource("3_sr7jt")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvf5d"]
+atlas = ExtResource("3_sr7jt")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rr5ms"]
+atlas = ExtResource("2_g2i77")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_py301"]
+atlas = ExtResource("2_g2i77")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7ifi"]
+atlas = ExtResource("2_g2i77")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ic4a6"]
+atlas = ExtResource("2_g2i77")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lsh5x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j3leu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qwbca")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_usavk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yvf5d")
+}],
+"loop": 0,
+"name": &"Attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rr5ms")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_py301")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l7ifi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ic4a6")
+}],
+"loop": 1,
+"name": &"Run",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lsh5x"]
+size = Vector2(10, 14)
+
+[node name="enemigo_verde" type="CharacterBody2D" unique_id=160762711 groups=["enemy"]]
+script = ExtResource("1_rk0y5")
+metadata/_custom_type_script = "uid://d2653ve3vron2"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1228545099]
+position = Vector2(-1, 4.5)
+shape = SubResource("RectangleShape2D_sr7jt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1929071437]
+sprite_frames = SubResource("SpriteFrames_lsh5x")
+animation = &"Run"
+autoplay = "Run"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2139516448]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1614459873]
+position = Vector2(-1, 6)
+shape = SubResource("RectangleShape2D_lsh5x")
+
+[connection signal="golpear" from="." to="." method="_on_golpear"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://bt3ognioev66b"]
+
+[ext_resource type="Script" uid="uid://bqlq0bfcvx5os" path="res://scripts/mago.gd" id="1_jmfut"]
+[ext_resource type="Texture2D" uid="uid://p8inh41hxsmc" path="res://sprites/Enemigo_dos_Idle-Sheet.png" id="2_7gnro"]
+[ext_resource type="Texture2D" uid="uid://dmbdfh1qys43c" path="res://sprites/Enemigo_dos_Attack-Sheet.png" id="2_m8qva"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xt8qx"]
+atlas = ExtResource("2_m8qva")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4uut"]
+atlas = ExtResource("2_m8qva")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ddx3"]
+atlas = ExtResource("2_m8qva")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m8qva"]
+atlas = ExtResource("2_7gnro")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgs8y"]
+atlas = ExtResource("2_7gnro")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lsh5x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xt8qx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e4uut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ddx3")
+}],
+"loop": 0,
+"name": &"Attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m8qva")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgs8y")
+}],
+"loop": 1,
+"name": &"Run",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xx6np"]
+size = Vector2(11, 17)
+
+[node name="Maga" type="CharacterBody2D" unique_id=741198912 groups=["enemy"]]
+script = ExtResource("1_jmfut")
+metadata/_custom_type_script = "uid://bwivwt018vm77"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=1881925017]
+sprite_frames = SubResource("SpriteFrames_lsh5x")
+animation = &"Attack"
+autoplay = "Run"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=866485485]
+position = Vector2(-1.5, 2.5)
+shape = SubResource("RectangleShape2D_xx6np")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=111864069]
+position = Vector2(18, -3)
+
+[node name="Timer" type="Timer" parent="." unique_id=436779952]
+wait_time = 3.0
+autostart = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D2" to="." method="_on_animated_sprite_2d_2_animation_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
